@@ -1,7 +1,7 @@
 import store from '@/store/index';
 
 export function setInterceptors(instance) {
-  // Add a request interceptor1111
+  // Add a request interceptor111122222
   instance.interceptors.request.use(
     function(config) {
       // Do something before request is sent
