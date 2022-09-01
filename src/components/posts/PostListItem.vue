@@ -7,8 +7,9 @@
       {{ postItem.contents }}
     </div>
     <div class="post-time">
+      <!-- {{ postItem.createdAt | FormDate }} -->
       {{ postItem.createdAt }}
-      <i class="icon ion-md-create"></i>
+      <i class="icon ion-md-create" @click="routeEditPage"></i>
       <i class="icon ion-md-trash" @click="deleteItem"></i>
     </div>
   </li>
@@ -24,12 +25,22 @@ export default {
       required: true,
     },
   },
+  // utils 전역필터로 사용
+  // filters: {
+  //   FormDate(value) {
+  //     return new Date(value);
+  //   },
+  // },
   methods: {
     async deleteItem() {
       if (confirm('Do you want to delete it?')) {
         await deletePost(this.postItem._id);
         this.$emit('refresh');
       }
+    },
+    routeEditPage() {
+      const id = this.postItem._id;
+      this.$router.push(`/post/${id}`);
     },
   },
 };
